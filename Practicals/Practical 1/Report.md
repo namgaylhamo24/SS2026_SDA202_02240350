@@ -24,4 +24,74 @@ The main problems we need to solve are:
 * Building a system that can handle a lot of traffic without getting slow.
 
 ## 2. Author's Solution Analysis
+### API Design
 
+The author keeps things simple busing just two API endpoints.
+
+1. The first endpoint accepts a POST request, which takes a URL and provides a shortened link.
+
+2. The second endpoint operates as a GET request, which accepts a URL and delivers the full original URL.
+
+This method allows the system to determine the appropriate user redirection path.The system presents a simple design that enables users to perform two fundamental tasks without experiencing any complications.
+
+### URL Redirecting Strategy
+
+A key decision is whether to use 301 or 302 redirects.A 301 redirect makes the browser treat the mapping as permanent.The browser saves it in its cache.After the user clicks the link, all following requests will go directly to the initial destination.
+
+This method decreases the amount of work that servers must perform.The ability to track link clicks will be lost to you.
+
+The shortener service never sees those requests.A 302 redirect makes the browser check the shortener service first.This process requires additional time to complete.
+
+The system provides total tracking capabilities for each individual user interaction.The system allows you to monitor user interactions while tracking their sources together with analytic data.
+
+The author shows that both methods perform equally well.The choice depends on which factors you consider more important. 
+
+### Hash Function Approaches
+
+The author presents two ways to generate URLs.
+
+#### Method 1: Hash Plus Collision Resolution
+
+The first method uses base 62 conversion.
+* CRC32 and MD5 and SHA-1 are common examples of hash functions.
+* The long URL is run through the hash function.
+* The first seven characters are taken to keep things short.
+* Truncating a hash raises the possibility of multiple hash values.
+
+Two different long URLs might end up with the same short URL.
+
+The system adds extra content to the hash until it reaches a new short URL.
+
+The process continues until the system discovers a distinct short URL.
+
+Bloom filters enable efficient URL checking through their ability to track short URLs and existing short URLs. 
+
+Bloom filters provide a fast method to determine whether a short URL has been claimed.
+
+
+### Method 2: Base 62 Conversion
+
+The second method uses base 62 conversion.
+
+Websites receive unique numeric identifiers, which function as their URLs.
+
+The ID is converted into a string using base 62.
+
+Base 62 uses numbers, including lowercase letters and uppercase letters.
+
+*An ID like 2009215674938 becomes "zn9edcu".*
+
+The underlying ID is guaranteed to be unique.
+Collisions cannot happen.
+
+The author compares the two methods.
+
+* Hash plus collision gives a fixed seven-character URL.
+* The system does not depend on an ID generator for its operation.
+* Collisions are possible.
+* Handling collisions adds complexity.
+* Base 62 conversion makes collisions impossible.
+* It flows naturally from an ID generator.
+
+However, the short URL length can grow over time.
+There is a security tradeoff.With base 62, if someone knows how the system works,  they could guess the short URL.This could be a problem with private links.
