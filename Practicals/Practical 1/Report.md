@@ -138,3 +138,101 @@ When we have a lot of data 365 billion records we need to decide how to split it
 We also need to decide which short URLs to store in our cache. Do we use the recently used or LRU method?. Do we use the least frequently used or LFU method? We need to come up with ways to stop cache stampedes, which happen when many users try to access an URL at the same time and it has just expired.
 
 The author talks a bit about rate limiting, which is a way to control how many requests our system can handle.. The author does not explain how to do rate limiting in a system that has many servers without using a central server. The author talks about rate limiting. Does not say how to apply it to a system, with many servers without using a central server.
+
+ ## Summary
+
+The authors approach has some points. It begins with gathering requirements. Ends with a complete design.
+The authors approach starts with gathering requirements. Ends with a complete design.
+
+The two hash function methods are explained. The pros and cons of the hash function methods are shown.
+
+The hash function methods have their advantages and disadvantages.
+
+The problem of redirect types, such as 301 versus 302 is an issue and shows that solutions must consider actual situations.
+
+The problem of types is something that needs to be considered.
+
+The redirect types, like 301 and 302 are important to consider.
+
+These figures show how data flows through the system.
+
+Limitations and Gaps:
+
+The solution does not discuss challenges in distributed systems, such as
+
+* How to make the system highly available with database replication
+
+* How to handle cache consistency across servers
+
+* How to handle failures without a system shutdown
+
+* How to monitor and operate the system
+
+The hash and collision resolution method needs to be explained.
+
+I want to know about the collision probability and retry logic of the hash and collision resolution method.
+
+The hash and collision resolution method is not clear.
+
+The data model only has three columns, which's a basic framework.
+
+The data model has three columns.
+
+#### What I Would Add:
+
+The document needs failure scenarios, such as what happens during database downtime and cache failures and how to keep the system available.
+
+The document needs to include failure scenarios.
+
+The document should have failure scenarios, like database downtime.
+
+The author mentions analytics. Does not implement it.
+
+The author talks about analytics. Does not do anything about it.
+
+The business needs to track customer clicks, referrer information and geographic data.
+
+The business needs to track customer clicks and other information.
+
+The business needs to track customer clicks.
+
+Security considerations:
+
+* The Base 62 conversion makes short URLs predictable.
+
+* The Base 62 conversion is a problem.
+
+* The Base 62 conversion makes it easy to guess the URLs.
+
+* A malicious user could guess all URLs.
+
+* Someone with intentions could guess all the URLs.
+
+* A malicious user could guess the URLs.
+
+The security process needs to stop this.The security process needs to be fixed.
+
+The security needs to use randomization or authentication for URLs.
+
+The security needs to use randomization or authentication.
+
+##### Metrics:
+
+How do we check if the system is healthy?
+
+We need to know how to check if the system is working properly.
+
+We need to know how to check the system.
+
+What promises would we make for system uptime, such, as 99.99% uptime redirects in under 100ms?
+
+We need to know what to promise about the system uptime.
+
+We need to know what to promise about the system.
+
+### Final Thoughts
+
+The system design solution works well. Meets all the key requirements. I think the author did a job in the interview by asking questions to clarify things estimating what the system needs and looking at different approaches.
+
+The important thing I took away is that good system design is about making tradeoffs not trying to find the perfect solution. For example choosing between 301 and 302 or using hash and collision or base62 it really depends on what you need.
+
