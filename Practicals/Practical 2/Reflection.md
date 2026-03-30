@@ -53,7 +53,7 @@ This diagram captures the **current manual workflow** from a context viewpoint, 
 7. Student accesses their grade via the LMS
 8. Regulatory Body audits grade records in the LMS annually
 
-![Task 1 – Interaction Overview Diagram: Actor-to-Actor](diagrams/exports/Task1_IoD_ActorToActor.png)
+![Task 1 – Interaction Overview Diagram: Actor-to-Actor](Diagrams/Task1_IoD_ActorToActor..drawio.png)
 
 *Figure 1: IoD showing actor-to-actor interactions in the current manual grading process (context viewpoint).*
 
@@ -198,3 +198,4 @@ This report is structured to directly follow the marking criteria: practical wor
 - Visual Paradigm. (2024). *What is Interaction Overview Diagram?* Retrieved from https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-interaction-overview-diagram/
 - GeeksForGeeks. (2024). *Use Case Diagram*. Retrieved from https://www.geeksforgeeks.org/use-case-diagram/
 - diagrams drawn from https://www.drawio.com/
+- shared chat : https://chat.deepseek.com/share/i6rjyrh3t28mcxqd7a
