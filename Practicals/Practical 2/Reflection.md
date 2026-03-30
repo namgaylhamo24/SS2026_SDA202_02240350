@@ -96,17 +96,15 @@ This diagram introduces the **system boundary** and maps all functional capabili
 
 ### Task 3 — Interaction Overview Diagram: System-Supported (Use Case Viewpoint)
 
-This diagram refines Task 1 by introducing the automated grading system as a mediating actor. A swimlane layout is used to show which entity is responsible for each step.
+This diagram refines Task 1 by introducing the automated grading system as a mediating actor. Instead of a formal swimlane drawing, the IoD presents a linear sequence of responsibilities with clear labels indicating which actor performs each step. This keeps the diagram compact while preserving responsibility separation.
 
-**Swimlanes:**
+**Responsibilities (annotated in diagram):**
 
-| Swimlane | Responsibility |
-|---|---|
-| Student | Submits code; receives rejection or grade notification; views results |
-| Automated Grading System | Validates deadline; executes code; grades; checks plagiarism; persists records; syncs to LMS; notifies actors |
-| Professor | Configures assignment (criteria + deadline); reviews grades and audit trail |
-| TurnItIn | Receives submission; returns similarity report |
-| LMS / Regulatory Body | Stores synced grades; provides audit records annually |
+- Student: Submits code; receives rejection or grade notification; views results
+- Automated Grading System: Validates deadline; executes code; grades; checks plagiarism; persists records; syncs to LMS; notifies actors
+- Professor: Configures assignment (criteria + deadline); reviews grades and audit trail
+- TurnItIn: Receives submission; returns similarity report
+- LMS / Regulatory Body: Stores synced grades; provides audit records annually
 
 **System-Supported Flow:**
 
@@ -125,11 +123,11 @@ This diagram refines Task 1 by introducing the automated grading system as a med
 
 ![Task 3 – Interaction Overview Diagram: System](Diagrams/Task3_IoD_System.drawio.png)
 
-*Figure 3: System-supported IoD with swimlane layout (use case viewpoint).*
+*Figure 3: System-supported IoD showing actor responsibilities annotated alongside the sequence (use case viewpoint).*
 
 ---
 
-## 1.3 Quality Attributes Consideration (5 marks)
+## 1.3 Quality Attributes Consideration
 
 The following quality attributes were identified from the requirements and constraints, and directly influenced the architectural design decisions reflected in the diagrams.
 
@@ -164,17 +162,11 @@ The following quality attributes were identified from the requirements and const
 **Design decision:** Using TurnItIn as an external third-party service rather than building plagiarism detection fully in-house reduces the development scope and cost of the system. This is reflected in the diagrams by TurnItIn being an external actor connected via a service boundary, not an internal use case. Internal comparison across student submissions is handled by the system itself, while the more complex web-based similarity check is delegated to TurnItIn.
 
 ---
----
 
-# Practical Report (5 marks)
-
----
-
-## 2.1 Reflection (3 marks)
-
+## 2.1 Reflection 
 ### What I Did
 
-In this practical, I developed three UML diagrams for an automated university assignment grading system: an actor-to-actor Interaction Overview Diagram showing the current manual process, a Use Case Diagram capturing the system's functional requirements, and a system-supported Interaction Overview Diagram with swimlanes showing how actors interact through the system.
+In this practical, I developed three UML diagrams for an automated university assignment grading system: an actor-to-actor Interaction Overview Diagram showing the current manual process, a Use Case Diagram capturing the system's functional requirements, and a system-supported Interaction Overview Diagram that annotates actor responsibilities alongside the sequence of actions.
 
 ### What I Learned
 
@@ -186,7 +178,7 @@ I also developed a much clearer understanding of the `«include»` versus `«ext
 
 The hardest part was determining the correct system boundary. The LMS is a real system that stores grades, and it was tempting to include grade storage as a use case inside the system boundary. However, because the LMS is mainframe-based and cannot be easily modified, including it as an internal component would misrepresent the actual architecture. Treating it as an external actor and modelling the integration as a sync step (UC9) was the correct decision, but it required careful reasoning about what the system owns versus what it integrates with.
 
-The swimlane diagram (Task 3) was also more complex than expected. Ensuring each step was placed in the correct lane, and that arrows between lanes accurately reflected direction of communication, required several iterations before the diagram was coherent.
+The Task 3 diagram was also more complex than expected. Ensuring each step was placed under the correct actor responsibility, and that arrows between elements accurately reflected direction of communication, required several iterations before the diagram was coherent.
 
 ### How I Would Improve
 
@@ -194,7 +186,7 @@ If I were to repeat this practical, I would start by explicitly listing all cons
 
 ---
 
-## 2.2 Clarity & Coherence (2 marks)
+## 2.2 Clarity & Coherence 
 
 This report is structured to directly follow the marking criteria: practical work (requirements analysis, architectural design, quality attributes) is presented first as the primary deliverable, followed by the reflective report section. Each diagram is introduced with its purpose and key decisions before the diagram is shown, so the reader understands what to look for. Tables are used throughout to present structured information — actors, requirements, use cases, and relationships — in a scannable format. The three tasks are presented in sequence to make explicit how each diagram builds on the previous one, progressing from the context viewpoint through the functional viewpoint to the system-supported viewpoint.
 
@@ -205,4 +197,4 @@ This report is structured to directly follow the marking criteria: practical wor
 - GeeksForGeeks. (2024). *Interaction Overview Diagrams – UML*. Retrieved from https://www.geeksforgeeks.org/interaction-overview-diagrams-unified-modelinglanguage-uml/
 - Visual Paradigm. (2024). *What is Interaction Overview Diagram?* Retrieved from https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-interaction-overview-diagram/
 - GeeksForGeeks. (2024). *Use Case Diagram*. Retrieved from https://www.geeksforgeeks.org/use-case-diagram/
-- Fowler, M. (2003). *UML Distilled: A Brief Guide to the Standard Object Modeling Language* (3rd ed.). Addison-Wesley.
+- diagrams drawn from https://www.drawio.com/
